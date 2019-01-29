@@ -1,6 +1,9 @@
 <?php
-include_once 'libs/Controller.php';
-include_once 'models/Posts.php';
+
+namespace App\Controllers;
+use App\Libs\Controller;
+use App\Models\Posts;
+
 
 class PostController extends Controller
 {
@@ -23,6 +26,18 @@ class PostController extends Controller
         $post = new Posts;
         $this->view->post = $post->getPostById($id);
         $this->view->render(['getContent'=>'post']);
+    }
+
+    public function addPost()
+    {
+        $this->view->title = 'Naujas Post\'as';
+        $this->view->render(['getContent'=>'newPost']);
+
+    }
+
+    public function savePost()
+    {
+        var_dump($_POST);
     }
     
 }

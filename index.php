@@ -1,9 +1,22 @@
 <?php
+
+/**
+ * TODO:
+ * USER CONTROLLER (new, login, register)
+ * POST CONTROLLER (new post, delete post, edit post)
+ * HELPER (form, slug)
+ * SAVE/RETRIEVE ALL DATA VIA AJAX JQUERY
+ */
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 define('baseURL','/mvc/');
+
+require_once 'vendor/autoload.php';
+
+define ('prefix', 'App\Controllers\\');
+
 function noPage($message){
     include_once 'controllers/ErrorController.php';
     $object = new ErrorController;
@@ -17,19 +30,15 @@ if (!empty($_SERVER['PATH_INFO'])){
     $param = !empty($path[2]) ? $path[2] : null;
 }
 
-
-
-
-
 if (!empty($controller)) {
     $classFile = ucfirst($controller).'Controller';
 } else {
     $classFile = null;
 }
 
-if (file_exists('controllers/' . $classFile . '.php') && ($classFile !== null)) {
-    include_once 'controllers/' . $classFile . '.php';
-    $object = new $classFile;
+if (file_exists('app/controllers/' . $classFile . '.php') && ($classFile !== null)) {
+    $class= prefix . $classFile;
+    $object = new $class();
     if (!empty($method)) {
         if (method_exists($object, $method)) {
             if (isset($param)) {
@@ -46,8 +55,8 @@ if (file_exists('controllers/' . $classFile . '.php') && ($classFile !== null)) 
     }
 } else {
     if ($classFile == null) {
-        include_once 'controllers/PageController.php';
-        $page = new PageController;
+        $controller= prefix . 'PageController';
+        $page = new $controller();
         $page->index();
 
     } else {

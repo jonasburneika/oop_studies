@@ -1,5 +1,7 @@
 <?php
-include_once 'controllers/PostController.php';
+namespace App\Libs;
+
+// include_once 'app/controllers/PostController.php';
 class View
 {
 

@@ -1,5 +1,9 @@
 <?php
-include_once 'libs/Controller.php';
+// include_once 'libs/Controller.php';
+namespace App\Controllers;
+use App\Libs\Controller;
+
+
 class ErrorController extends Controller
 {
     public function noPage($message)

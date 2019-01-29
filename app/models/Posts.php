@@ -1,5 +1,8 @@
 <?php
-include_once 'libs/Database.php';
+// include_once 'app/libs/Database.php';
+
+namespace App\Models;
+use App\Libs\Database;
 
 class Posts
 {

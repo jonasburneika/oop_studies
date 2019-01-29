@@ -1,6 +1,9 @@
 <?php
-include_once 'models/Posts.php';
-include_once 'libs/Controller.php';
+namespace App\Controllers;
+use App\Libs\Controller;
+use App\Models\Posts;
+//include_once 'models/Posts.php';
+//include_once 'libs/Controller.php';
 
 class PageController extends Controller
 {
