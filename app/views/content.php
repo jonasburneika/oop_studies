@@ -11,7 +11,7 @@
           
                 echo '
                 <div class="blog-post">
-                    <a href="'; echo baseURL . 'index.php/Post/show/'. $post['id'].'" target="_self" ><h2 class="blog-post-title">'.$post['title'].'</h2></a>
+                    <a href="'; echo 'index.php/Post/show/'. $post['id'].'" target="_self" ><h2 class="blog-post-title">'.$post['title'].'</h2></a>
                     <p class="blog-post-meta">'.$post['creationTime'].' by <a href="#">'.$post['author_id'].'</a></p>
                     <p>'.$post['content'].'</p>
                 </div><!-- /.blog-post -->

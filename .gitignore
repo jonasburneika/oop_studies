@@ -2,3 +2,4 @@ img/*
 autoloader-MY/
 vendor/
 readme
+config.php
