@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo $this->title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= baseURL ?>views/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= baseURL ?>views/css/main.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="app/views/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="app/views/css/main.css" />
     
 </head>
 <body>

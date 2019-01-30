@@ -81,7 +81,7 @@
             <a href="https://mdbootstrap.com/education/bootstrap/"> MDBootstrap.com</a>
         </div>
         <!-- Copyright -->
-        <script src="<?= baseURL ?>views/js/main.js"></script>
+        <script src="<?= baseURL ?>app/views/js/main.js"></script>
     </footer>
     <!-- Footer -->
 </div>

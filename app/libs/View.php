@@ -1,11 +1,11 @@
 <?php
 namespace App\Libs;
+use App\Controllers;
 
-// include_once 'app/controllers/PostController.php';
 class View
 {
 
-    private $viewCatalogPath = '/../views/';
+    private $viewCatalogPath = baseURL . 'app/views/';
 
     public function render($arParameters) 
     {         
@@ -25,7 +25,7 @@ class View
                 $this->$method($variable);
             }
         } else {
-            require $this->getContent('error');
+            include $this->getContent('error');
         }
         $this->getFooter();
     }
@@ -33,17 +33,17 @@ class View
 
     public function getHeader()
     {
-        require $this->viewCatalogPath . 'header.php';
+       include $this->viewCatalogPath . 'header.php';
     }
 
     public function getContent($template)
     {
-        require ($this->viewCatalogPath . $template . '.php');
+        include ($this->viewCatalogPath . $template . '.php');
     }
 
     public function getFooter()
     {
-        require $this->viewCatalogPath . 'footer.php';
+        include $this->viewCatalogPath . 'footer.php';
     }
 
     // public function headerNavigation()
@@ -53,7 +53,7 @@ class View
 
     public function getBanner($bannerUrl = 'banner')
     {
-        require $this->viewCatalogPath . $bannerUrl . '.php';
+        include $this->viewCatalogPath . $bannerUrl . '.php';
     }
 
 }

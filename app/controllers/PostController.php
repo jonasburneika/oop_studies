@@ -17,7 +17,7 @@ class PostController extends Controller
         $this->view->posts = $posts->getAllPosts();
         $this->view->title = 'Musu super title';
         $this->view->headLine = 'Mūsų headline';
-        $this->view->render(['getContent'=>'posts']);
+        $this->view->render(['getContent'=>'post']);
 
     }
 

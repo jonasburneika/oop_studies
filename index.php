@@ -11,15 +11,15 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define('baseURL','/mvc/');
+define('baseURL','/var/www/public_html/oop_studies/');
 
 require_once 'vendor/autoload.php';
 
 define ('prefix', 'App\Controllers\\');
 
 function noPage($message){
-    include_once 'controllers/ErrorController.php';
-    $object = new ErrorController;
+    $controller = prefix . 'ErrorController';
+    $object = new $controller();
     $object->noPage($message);
 }
 if (!empty($_SERVER['PATH_INFO'])){
@@ -55,7 +55,7 @@ if (file_exists('app/controllers/' . $classFile . '.php') && ($classFile !== nul
     }
 } else {
     if ($classFile == null) {
-        $controller= prefix . 'PageController';
+        $controller = prefix . 'PageController';
         $page = new $controller();
         $page->index();
 
