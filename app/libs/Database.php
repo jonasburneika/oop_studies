@@ -11,7 +11,7 @@ class Database
 
     public function connect()
     {
-        $this->conn = mysqli_connect("localhost", "root", "", "mvc_php");
+        $this->conn = mysqli_connect("localhost", "root", "myoyovdot", "mvc_php");
 
         if (!$this->conn) {
             echo "Error: Unable to connect to MySQL." . PHP_EOL;

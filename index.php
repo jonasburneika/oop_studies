@@ -11,7 +11,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-define('baseURL','/mvc/');
+define('baseURL','/var/www/public_html/oop_studies/');
 
 require_once 'vendor/autoload.php';
 
@@ -55,7 +55,7 @@ if (file_exists('app/controllers/' . $classFile . '.php') && ($classFile !== nul
     }
 } else {
     if ($classFile == null) {
-        $controller= prefix . 'PageController';
+        $controller = prefix . 'PageController';
         $page = new $controller();
         $page->index();
 
