@@ -18,8 +18,8 @@ require_once 'vendor/autoload.php';
 define ('prefix', 'App\Controllers\\');
 
 function noPage($message){
-    include_once 'controllers/ErrorController.php';
-    $object = new ErrorController;
+    $controller= prefix . 'ErrorController';
+    $object = new $controller();
     $object->noPage($message);
 }
 if (!empty($_SERVER['PATH_INFO'])){

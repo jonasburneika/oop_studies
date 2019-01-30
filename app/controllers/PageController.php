@@ -2,8 +2,6 @@
 namespace App\Controllers;
 use App\Libs\Controller;
 use App\Models\Posts;
-//include_once 'models/Posts.php';
-//include_once 'libs/Controller.php';
 
 class PageController extends Controller
 {
@@ -14,9 +12,9 @@ class PageController extends Controller
         $posts = new Posts;
        
         /** Padaryti ne is cia */
-        $this->addBlock('getBanner','banner');
-        $this->addBlock('getContent','featured');
-        $this->addBlock('getContent','content');
+        $this->view->addBlock('getBanner','banner');
+        $this->view->addBlock('getContent','featured');
+        $this->view->addBlock('getContent','content');
 
         $this->view->title = 'Musu super title';
         $this->view->headLine = 'Mūsų headline';
@@ -26,11 +24,6 @@ class PageController extends Controller
         /** Padaryti ne is cia */
 
         $this->view->posts = $posts->getAllPosts();
-        $this->view->render($this->content);
-    }
-
-    public function addBlock($method, $value)
-    {
-        $this->content[] = [$method => $value];
+        $this->view->render($this->view->content);
     }
 }

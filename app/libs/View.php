@@ -25,7 +25,7 @@ class View
                 $this->$method($variable);
             }
         } else {
-            require $this->getContent('error');
+            $this->getContent('error');
         }
         $this->getFooter();
     }
@@ -54,6 +54,11 @@ class View
     public function getBanner($bannerUrl = 'banner')
     {
         require $this->viewCatalogPath . $bannerUrl . '.php';
+    }
+
+    public function addBlock($method, $value)
+    {
+        $this->content[] = [$method => $value];
     }
 
 }

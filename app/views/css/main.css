@@ -181,3 +181,23 @@ body {
   width: 100%;
   box-shadow: 2px 2px #bab0b0;
 }
+
+.form-signin {
+  width: 33%;
+  padding: 15px;
+  margin: 0 auto;
+}
+.blog-header-logo {
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+  font-size: 2.25rem;
+}
+a {
+  color: #007bff;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
+}
+
+a:hover{
+  text-decoration: none;
+}

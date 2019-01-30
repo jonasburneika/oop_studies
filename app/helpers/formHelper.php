@@ -20,7 +20,21 @@ class FormHelper
                 $this->form .= ' '.$name .' ="'.$value.'"';
             }
         }
-        $this->form .= ' />';
+        $this->form .= ' /></br>';
+    }
+    public function inputGroup($inputfields) // OpenDiv OpenDivWithClass CloseDiv methods
+    {
+        $this->form .= '<div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">First and last name</span>
+            </div>';
+        $this->form .= $inputfields;
+        $this->form .= '</div>';
+    }
+
+    public function getForm()
+    {
+        return $this->form;
     }
 
     public function checkbox()

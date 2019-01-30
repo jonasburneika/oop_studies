@@ -10,6 +10,6 @@ class ErrorController extends Controller
     {
         $this->view->errorMessage = $message;
         $this->view->title = '404 Page';
-        $this->view->render('error');
+        $this->view->render(['getContent' => 'error']);
     }
 }
