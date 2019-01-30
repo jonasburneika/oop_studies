@@ -2,9 +2,20 @@
 
 /**
  * TODO:
- * USER CONTROLLER (new, login, register)
- * POST CONTROLLER (new post, delete post, edit post)
- * HELPER (form, slug)
+ * USER CONTROLLER (
+ *      profile, 
+ *      login, 
+ *      register
+ * )
+ * POST CONTROLLER (
+ *      new post, 
+ *      delete post, 
+ *      edit post
+ * )
+ * HELPER (
+ *      form, 
+ *      slug
+ * )
  * SAVE/RETRIEVE ALL DATA VIA AJAX JQUERY
  */
 ini_set('display_errors', 1);

@@ -4,41 +4,103 @@ class FormHelper
 {
     private $form = '';
     
-    public function __construct($method, $action)
+    public function __construct($method, $action, $class=null)
     {
-        $this->form .='<form method="'.$method.'" action="'.$action.'">';
+        $this->form .='<form method="'.$method.'" action="'.indexURL.'index.php/'.$action.'"';
+        
+        if(!empty($class)){
+            $this->form .=' class="'.$class.'"';
+        }
+        $this->form .= '>';
     }
 
     public function input($attributes)
     {
-        if (array_key_exists('id', $attributes) && array_key_exists('label', $attributes)){
-            $this->form .= '<label for="'.$attributes['id'].'">'.$attributes['label'].'</label>';
-        }
         $this->form .= '<input ';
         foreach ($attributes as $name => $value) {
-            if ($name != 'label') {
+
+            $this->form .= ' '.$name .' ="'.$value.'"';
+            
+        }
+        $this->form .= ' />';
+    }
+
+    public function label($for=null, $title=null)
+    {
+        $this->form .= '<label for="'.$for.'">'.$title.'</label>';
+    }
+
+    public function addHTML($HTML)
+    {
+        $this->form .= $HTML;
+    }
+
+    public function button($attributes, $title)
+    {
+        $this->form .= '<button';
+        if (is_array($attributes)){
+            foreach ($attributes as $name => $value) {
+                $this->form .= ' '.$name .' ="'.$value.'"';
+            }
+            $this->form .= ' >' . $title;
+        } else {
+            $this->form .= '>' . $title;
+        }
+        $this->form .= '</button>';
+    }
+
+    public function openDiv($attributes)
+    {
+        $this->form .= '<div';
+        if (is_array($attributes)){
+            foreach ($attributes as $name => $value) {
+                $this->form .= ' '.$name .' ="'.$value.'"';
+            }
+            $this->form .= ' >';
+        } else {
+            $this->form .= '>';
+        }
+        
+    }
+
+    public function closeDiv()
+    {
+        $this->form .= '</div>';
+    }
+
+    public function addSpan($attributes, $content = null)
+    {
+        $this->form .= '<span';
+        if (is_array($attributes)){
+            foreach ($attributes as $name => $value) {
                 $this->form .= ' '.$name .' ="'.$value.'"';
             }
         }
-        $this->form .= ' /></br>';
-    }
-    public function inputGroup($inputfields) // OpenDiv OpenDivWithClass CloseDiv methods
-    {
-        $this->form .= '<div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="">First and last name</span>
-            </div>';
-        $this->form .= $inputfields;
-        $this->form .= '</div>';
+        $this->form .= ' >';
+        if (!empty($content)){
+            $this->form .= $content;
+        }
+        $this->form .= '</span>';
     }
 
     public function getForm()
     {
+        $this->form .= '</form>';
         return $this->form;
     }
 
-    public function checkbox()
+    public function checkbox($attributes,$title = null, $checked = false)
     {
-
+        $this->form .= '<input type="checkbox"';
+        if (is_array($attributes)){
+            foreach ($attributes as $name => $value) {
+                $this->form .= ' '.$name .' ="'.$value.'"';
+            }
+            $this->form .= ' >';
+        } else {
+            $this->form .= '>';
+        }
+        $this->form .= $title;
+        //  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
     }
 }

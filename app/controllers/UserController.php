@@ -9,14 +9,27 @@ class UserController extends Controller
 
     public function login()
     {
-        $form = new FormHelper('POST','User/checkLogin');
+        $form = new FormHelper('POST','user/checkLogin', 'form-signin');
         /** Padaryti ne is cia */
         $this->view->title = 'Musu super title';
         /** Padaryti ne is cia */
-        $formFields = ['type'=>'text', 'name'=>'userName', 'id'=>'userName','label'=>'Vartotojo vardas'];
-        $form->input($formFields);
-        $formFields = ['type'=>'text', 'name'=>'pass1', 'id'=>'pass1','label'=>'Slaptažodis'];
-        $form->input($formFields);
+        $form->openDiv(['class'=>'form-label-group']);
+        $form->label('inputEmail','Email address');
+        $form->input(['type'=>'email', 'name'=>'email', 'id'=>'inputEmail', 'class'=>'form-control', 'placeholder'=>'Email address']);
+        $form->closeDiv();
+
+        $form->openDiv(['class'=>'form-label-group']);
+        $form->label('inputPassword','Password');
+        $form->input(['type'=>'password', 'name'=>'password', 'id'=>'inputPassword', 'class'=>'form-control', 'placeholder'=>'Password']);
+        $form->closeDiv();
+
+        $form->openDiv(['class'=>'checkbox mb-3']);
+        $form->addHTML('<label>');
+        $form->checkbox(['type'=>'checkbox', 'name'=>'remember', 'value'=>'remember-me'],'Remember me');
+        $form->addHTML('</label>');     
+        $form->closeDiv();
+
+        $form->button(['class'=>'btn btn-lg btn-primary btn-block', 'name'=>'submit', 'type'=>'submit'],'Sign in');
         
         $this->view->form = $form->getForm();
         $this->view->render(['getContent'=>'login']);
@@ -31,7 +44,7 @@ class UserController extends Controller
         $this->view->render(['getContent'=>'register']);
     }
 
-    public function checkLogin($data)
+    public function checkLogin()
     {
         var_dump($_POST);
     }

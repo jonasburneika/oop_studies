@@ -19,7 +19,7 @@
                     <a class="text-muted" href="#">Subscribe</a>
                 </div>
                 <div class="col-4 text-center">
-                    <a class="blog-header-logo text-dark" href="<?= indexURL ?>index.php">Large</a>
+                    <a class="blog-header-logo text-dark" href="<?= indexURL ?>index.php">OOP MVC PROJECT</a>
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <a class="text-muted" href="#">
