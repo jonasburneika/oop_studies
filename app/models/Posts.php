@@ -11,7 +11,7 @@ class Posts
     {
         $db = new Database(); // Skliausteliai leidzia i konstruktoriu nusiusti parametrus
         $db->select()->from('posts');
-        return $db->get();
+        return $db->execute();
 
     }
 
@@ -19,7 +19,7 @@ class Posts
     {
         $db = new Database();
         $db->select()->from('posts')->where('id',$id);
-        return $db->get()->fetch_assoc();
+        return $db->execute()->fetch_assoc();
     }
 
 }

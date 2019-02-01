@@ -7,6 +7,11 @@ class View
 
     private $viewCatalogPath = baseURL . 'app/views/';
 
+    public function redirect($url, $statusCode = 303)
+    {
+        header('Location: ' . indexURL . $url, true, $statusCode);
+        die();
+    }
     public function render($arParameters) 
     {         
         $this->getHeader();

@@ -33,15 +33,17 @@ class Database
         } else {
             $i = 0;
             foreach ($columns as $column) {
-                if ($i > 0) {
-                    $this->sqlQuery .= $column . ' ';
+                if ($i == 0) {
+                    $this->sqlQuery .= 'SELECT `' . $column . '`';
                 } else {
-                    $this->sqlQuery .= 'SELECT ' . $column . ', ';
+                    $this->sqlQuery .= '`'.$column . '` ';
+                    
                 }
+                $i++;
                 if ($i < count($columns)) { 
                     $this->sqlQuery .= ', ';
                 }
-                $i++;
+                
             }
         }
        
@@ -50,7 +52,7 @@ class Database
 
     public function insert($tableName)
     {
-        $this->sqlQuery .= ' INTO ' . $tableName . ' ';
+        $this->sqlQuery .= 'INSERT INTO `' . $tableName . '` ';
         return $this;
     }
 
@@ -81,23 +83,24 @@ class Database
         $i = 0;
         foreach ($values as $key => $values) {
             $this->sqlQuery .= ' '. $key . ' = ' . $values . ' ';
+            $i++;
             if ($i < count($values)){
                 $this->sqlQuery .= ', ';
             }
-            $i++;
+            
         }
         return $this;
     }
 
     public function where($columnValue, $value, $operator = '=')
     {
-        $this->sqlQuery .= 'WHERE ' . $columnValue . ' ' . $operator  . ' ' . $value . ' ';
+        $this->sqlQuery .= 'WHERE `' . $columnValue . '` ' . $operator  . ' \'' . $value . '\' ';
         return $this;
     }
 
     public function whereAnd($columnValue, $value, $operator = '=')
     {
-        $this->sqlQuery .= ' AND ' . $columnValue . ' ' . $operator  . ' ' . $value . ' ';
+        $this->sqlQuery .= ' AND `' . $columnValue . '` ' . $operator  . ' \'' . $value . '\' ';
         return $this;
     }
 
@@ -130,6 +133,7 @@ class Database
             $i = 0;
             foreach ($sql as $value) {
                 $this->sqlQuery .= $value;
+                $i++;
                 if ($i < count($sql)){
                     $this->sqlQuery .= ', ';
                 }
@@ -151,6 +155,7 @@ class Database
             $i = 0;
             foreach ($sql as $value) {
                 $this->sqlQuery .= $value;
+                $i++;
                 if ($i < count($sql)){
                     $this->sqlQuery .= ', ';
                 }
@@ -171,9 +176,11 @@ class Database
         $this->sqlQuery .= ' (';
         $i = 0;
         foreach ($parameters as $parameter) {
-            $this->sqlQuery .= ' ' . $parameter;
-            
+            $this->sqlQuery .= ' `' . $parameter.'`';
             $i++;
+            if ($i < count($parameters)){
+                $this->sqlQuery .= ', ';
+            }
         }
         $this->sqlQuery .= ') ';
         return $this;
@@ -185,18 +192,19 @@ class Database
             $this->error[] = ' SQL parameters amount is not equal to Values amount';
         }
 
-        if (!is_aaray($values)){
+        if (!is_array($values)){
             $values = (array) $values;
         }
         $this->values = count($values);
         $this->sqlQuery .= ' VALUES (';
         $i = 0;
-        foreach ($values as $values) {
-            $this->sqlQuery .= ' ' . $values;
+        foreach ($values as $value) {
+            $this->sqlQuery .= ' \'' . $value.'\'';
+            $i++;
             if ($i < count($values)){
                 $this->sqlQuery .= ', ';
             }
-            $i++;
+
         }
         $this->sqlQuery .= ') ';
         return $this;
@@ -243,13 +251,19 @@ class Database
         return $this;
     }
 
-    public function get()
+    public function lastID()
     {
-        $this->connect();
-        return $this->conn->query($this->sqlQuery);
+        return $this->conn->insert_id;
     }
+    
     public function getSql()
     {
         return $this->sqlQuery;
     }
+
+    public function execute()
+    {
+        $this->connect();
+        return $this->conn->query($this->sqlQuery);
+    }    
 }

@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use App\Libs\Controller;
 use App\Models\Posts;
+use App\Models\Users;
 
 class PageController extends Controller
 {
@@ -23,7 +24,15 @@ class PageController extends Controller
         $this->view->link = baseURL .'index.php';
         /** Padaryti ne is cia */
 
-        $this->view->posts = $posts->getAllPosts();
+
+
+        $user = new Users;
+        $postData = $posts->getAllPosts();
+        $postData = mysqli_fetch_all($postData, MYSQLI_ASSOC);
+        foreach ($postData as $key => $post) {
+            $postData[$key]['author'] = $user->getUserById($post['author_id'])['username'];
+        }
+        $this->view->posts = $postData;
         $this->view->render($this->view->content);
     }
 }

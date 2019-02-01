@@ -1,5 +1,6 @@
 <?php
 namespace App\Helpers;
+
 class FormHelper
 {
     private $form = '';
@@ -83,12 +84,6 @@ class FormHelper
         $this->form .= '</span>';
     }
 
-    public function getForm()
-    {
-        $this->form .= '</form>';
-        return $this->form;
-    }
-
     public function checkbox($attributes,$title = null, $checked = false)
     {
         $this->form .= '<input type="checkbox"';
@@ -102,5 +97,11 @@ class FormHelper
         }
         $this->form .= $title;
         //  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
+    }
+
+    public function getForm()
+    {
+        $this->form .= '</form>';
+        return $this->form;
     }
 }

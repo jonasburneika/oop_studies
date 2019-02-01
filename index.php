@@ -5,7 +5,7 @@
  * USER CONTROLLER (
  *      profile, 
  *      login, 
- *      register
+ *      +register
  * )
  * POST CONTROLLER (
  *      new post, 
@@ -22,6 +22,11 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+session_start();
+// Start the session
+if (!isset($_SESSION['loged'])){
+    $_SESSION['loged'] = false;
+}
 
 require_once 'config.php';
 require_once 'vendor/autoload.php';
