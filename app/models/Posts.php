@@ -22,4 +22,11 @@ class Posts
         return $db->execute()->fetch_assoc();
     }
 
+    public function getPostsByAuthorId($id)
+    {
+        $db = new Database();
+        $db->select()->from('posts')->where('author_id',$id);
+        return mysqli_fetch_all($db->execute(), MYSQLI_ASSOC);
+    }
+
 }

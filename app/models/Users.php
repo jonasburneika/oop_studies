@@ -21,8 +21,17 @@ class Users
     public function getUserById($id)
     {
         $db = new Database();
-        $db->select(['id','username','email'])->from('users')->where('id',$id);
-        return $db->execute()->fetch_assoc();
+        $userData = [];
+        $db->select()->from('users')->where('id',$id);
+        $basicUserData = $db->execute()->fetch_assoc();
+        if (is_array($basicUserData)){
+            $userData = array_merge($userData, $basicUserData);
+            $db->select(['link','name','icon'])->from('user_social')->leftJoin('soc_networks')->on('user_social.network_id','soc_networks.id')->where('user_id',$id);
+            $userData['social'] = mysqli_fetch_all($db->execute(), MYSQLI_ASSOC);
+            return $userData;
+        } else {
+            return false;
+        }
     }
 
     public function addNewUser($parameters)
@@ -41,6 +50,12 @@ class Users
         } else {
             return false;
         }
+    }
+    public function getUserSocials($id)
+    {
+        $db = new Database();
+        $db->select()->from('socials')->where('user_id',$id);
+        return $db->execute();
     }
     
     public function hashPassword($password){

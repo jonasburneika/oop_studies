@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="<?= cssURL ?>app/views/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?= cssURL ?>app/views/css/main.css" />
+    <script src="<?= baseURL ?>app/views/js/profile.js"></script>
+    <script src="<?= baseURL ?>app/views/js/bootstrap.js"></script>
     
 </head>
 <body>
@@ -17,7 +19,7 @@
                 <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
                 <?php if (isset($_SESSION['username'])){
-                    echo '<a class="text-muted" href="' . indexURL . 'index.php/user/profile/'.$_SESSION['userID'].'">'.$_SESSION['username'].'</a>';
+                    echo '<a class="text-muted" href="' . indexURL . 'index.php/user/profile/">'.$_SESSION['username'].'</a>';
                 } else {
                     echo '<a class="text-muted" href="' . indexURL . 'index.php/user/register">Register</a>';
                 } 

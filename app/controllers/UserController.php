@@ -3,6 +3,7 @@ namespace App\Controllers;
 use App\Libs\Controller;
 use App\Libs\Validation;
 use App\Models\Users;
+use App\Models\Posts;
 use App\Helpers\FormHelper;
 use App\Helpers\AlertHelper;
 
@@ -145,6 +146,28 @@ class UserController extends Controller
             }
 
         }
+    }
+
+    public function profile($id=null){
+        $user = new Users;
+        $post = new Posts;
+        if ($_SESSION['loged']){
+            $id = $_SESSION['userID'];
+        }
+        if ($id !== null && is_numeric($id)){
+            $id = (int) $id;
+            $userData = $user->getUserById($id); // returns array of userdata OR false
+            if (is_array($userData)){
+                $this->view->user = $userData;
+                $this->view->posts = $post->getPostsByAuthorId($id);
+                $this->view->render(['getContent'=>'profile']);
+            } else {
+                $this->view->redirect('index.php/error/noPage/User-does\'t-exist');
+            }
+        } else {
+            $this->view->redirect('index.php');
+        }
+       
     }
 
     public function logout(){
