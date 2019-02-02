@@ -264,6 +264,8 @@ class Database
     public function execute()
     {
         $this->connect();
-        return $this->conn->query($this->sqlQuery);
+        $query = $this->sqlQuery;
+        $this->sqlQuery = null;
+        return $this->conn->query($query);
     }    
 }
