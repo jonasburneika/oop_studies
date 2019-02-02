@@ -64,7 +64,7 @@ class Database
     
     public function update($tableName)
     {
-        $this->sqlQuery .= 'UPDATE ' . $tableName . ' ';
+        $this->sqlQuery .= 'UPDATE `' . $tableName . '` ';
         return $this;
     }
     
@@ -81,8 +81,8 @@ class Database
         }
         $this->sqlQuery .= ' SET ';
         $i = 0;
-        foreach ($values as $key => $values) {
-            $this->sqlQuery .= ' '. $key . ' = ' . $values . ' ';
+        foreach ($values as $key => $value) {
+            $this->sqlQuery .= ' '. $key . ' = \'' . $value . '\' ';
             $i++;
             if ($i < count($values)){
                 $this->sqlQuery .= ', ';
@@ -234,7 +234,7 @@ class Database
         return $this;
     }
 
-    public function orderBy($condition, $sort = 'ASC')
+    public function orderBy($condition='id', $sort = 'ASC')
     {
         $this->sqlQuery .= ' ORDER BY ' . $condition . ' ' . $sort . ' ';
         return $this;
@@ -259,6 +259,13 @@ class Database
     public function getSql()
     {
         return $this->sqlQuery;
+    }
+
+    public function escape($string){
+        $this->connect();
+        $saveString = mysqli_real_escape_string($this->conn,$string);
+        mysqli_close($this->conn);
+        return $saveString;
     }
 
     public function execute()

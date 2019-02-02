@@ -5,11 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title><?php echo $this->title; ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- include libraries(jQuery, bootstrap) -->
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-lite.js"></script>
+    
     <link rel="stylesheet" type="text/css" media="screen" href="<?= cssURL ?>app/views/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="<?= cssURL ?>app/views/css/main.css" />
     <script src="<?= baseURL ?>app/views/js/profile.js"></script>
     <script src="<?= baseURL ?>app/views/js/bootstrap.js"></script>
-    
 </head>
 <body>
     

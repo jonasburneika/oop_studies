@@ -223,6 +223,7 @@ a:hover{
   -webkit-border-radius: 50% !important;
   -moz-border-radius: 50% !important;
   border-radius: 50% !important;
+  margin-left: 25%;
 }
 
 .profile-usertitle {
@@ -264,6 +265,7 @@ a:hover{
     
 .profile-usermenu {
   margin-top: 30px;
+  border-top: 2px solid;
 }
 
 .profile-usermenu ul li {
@@ -316,4 +318,74 @@ a:hover{
 
 .post-head{
   overflow: auto;
+}
+.post-read{
+  margin: 0 10px;
+}
+.post-edit{
+  margin: 0 10px;
+}
+#zergnet-widget-51973 .zergentity {
+  width: 23.5% !important;
+  margin-bottom: 15px !important;
+  margin-left: 2% !important;
+}
+
+#zergnet-widget-51973 .zerglayoutcl {
+  width: 100% !important;
+}
+
+#zergnet-widget-51973 .zergheadline {
+  width: 100% !important;
+  margin-top: 6px !important;
+  text-align: left !important;
+}
+
+#zergnet-widget-51973 .zergheadline a {
+  font-family: Arial !important;
+}
+
+#zergnet-widget-51973 .zergentity img {
+  width: 100% !important;
+  -ms-transform: translateY(12.5%);
+  -webkit-transform: translateY(12.5%);
+  transform: translateY(12.5%);
+  height: auto !important;
+}
+
+#zergnet-widget-51973 .zergentity>a {
+  display: block;
+  margin-top: -25% !important;
+  overflow: hidden;
+}
+
+#zergnet-widget-51973 .zergentity:nth-of-type(1) {
+  margin-left: 0 !important;
+}
+
+#zergnet-widget-51973 .zergheader {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 2px;
+  font-family: arial;
+}
+
+@media (max-width: 999px) {
+  #zergnet-widget-51973 .zergentity:nth-of-type(4) {
+      display: none !important;
+  }
+
+  #zergnet-widget-51973 .zergentity {
+      width: 32% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  #zergnet-widget-51973 .zergentity {
+      margin-left: 0 !important;
+      width: 100% !important;
+      clear: both !important;
+      margin-bottom: 10px !important;
+  }
 }

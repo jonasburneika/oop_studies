@@ -112,7 +112,7 @@ class UserController extends Controller
                 $_SESSION['loged'] = true;
                 $_SESSION['username'] = $userData['username'];
                 $_SESSION['userID'] = $userData['id'];
-                $this->view->redirect('index.php/user/login?success=Welcome%20'.$_SESSION['username']);
+                $this->view->redirect('index.php/user/profile?success=Welcome%20'.$_SESSION['username']);
             }
         }
     }
@@ -140,7 +140,6 @@ class UserController extends Controller
                 } else {
                     $this->view->redirect('index.php/user/register?error=User%20'.$userName.'%20exist');
                 }
-
             } else {
                 $this->view->redirect('index.php/user/register?error=password%20did%20match');
             }
@@ -151,6 +150,36 @@ class UserController extends Controller
     public function profile($id=null){
         $user = new Users;
         $post = new Posts;
+        if ($_SESSION['loged'] && $id == null){
+            $id = $_SESSION['userID'];
+        }
+        if (isset($_GET['success'])){
+            $alert = new AlertHelper;
+            $this->view->alert = $alert->showSuccessAlert($_GET['success']);
+        }
+        if ($id !== null && is_numeric($id)){
+            $id = (int) $id;
+            $userData = $user->getUserById($id); // returns array of userdata OR false
+            if (is_array($userData)){
+                $this->view->user = $userData;
+                $this->view->title = $userData['username'] . ' Profile';
+                $this->view->tab = 'profile';
+
+                $this->view->profileNavigation = $this->view->getBlock('user/navigation');
+                $this->view->profileContent = $this->view->getBlock('user/profile');
+                $this->view->render(['getContent'=>'user']);
+            } else {
+                $this->view->redirect('index.php/error/noPage/User-does\'t-exist');
+            }
+        } else {
+            $this->view->redirect('index.php');
+        }
+       
+    }
+
+    public function settings(){
+        $user = new Users;
+        $post = new Posts;
         if ($_SESSION['loged']){
             $id = $_SESSION['userID'];
         }
@@ -159,15 +188,49 @@ class UserController extends Controller
             $userData = $user->getUserById($id); // returns array of userdata OR false
             if (is_array($userData)){
                 $this->view->user = $userData;
-                $this->view->posts = $post->getPostsByAuthorId($id);
-                $this->view->render(['getContent'=>'profile']);
+                $this->view->title = $userData['username'] . ' Settings';
+                $this->view->tab = 'settings';
+                $this->view->profileNavigation = $this->view->getBlock('user/navigation');
+                $this->view->profileContent = $this->view->getBlock('user/settings');
+                $this->view->render(['getContent'=>'user']);
             } else {
                 $this->view->redirect('index.php/error/noPage/User-does\'t-exist');
             }
         } else {
             $this->view->redirect('index.php');
         }
-       
+    }
+
+    public function posts($id=null){
+        $user = new Users;
+        $post = new Posts;
+        $status = true;
+        if ($_SESSION['loged']){
+            $id = $_SESSION['userID'];
+            $status = 'IS NOT NULL';
+        }
+        if ($id !== null && is_numeric($id)){
+            $id = (int) $id;
+            $userData = $user->getUserById($id); // returns array of userdata OR false
+            if (is_array($userData)){
+                $this->view->user = $userData;
+                $this->view->title = $userData['username'] . ' Posts';
+                $this->view->tab = 'posts';
+                if (isset($_SESSION['userID']) && $id == $_SESSION['userID']){
+                    $this->view->posts = $post->getPostsByAuthorId($id);
+                } else {
+                    $this->view->posts = $post->getActivePostsByAuthorId($id);
+                }
+                
+                $this->view->profileNavigation = $this->view->getBlock('user/navigation');
+                $this->view->profileContent = $this->view->getBlock('user/posts');
+                $this->view->render(['getContent'=>'user']);
+            } else {
+                $this->view->redirect('index.php/error/noPage/User-does\'t-exist');
+            }
+        } else {
+            $this->view->redirect('index.php');
+        }
     }
 
     public function logout(){

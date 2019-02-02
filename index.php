@@ -4,7 +4,7 @@
  * TODO:
  * USER CONTROLLER (
  *      profile, 
- *      login, 
+ *      +login, 
  *      +register
  * )
  * POST CONTROLLER (
@@ -13,7 +13,7 @@
  *      edit post
  * )
  * HELPER (
- *      form, 
+ *      +form, 
  *      slug
  * )
  * SAVE/RETRIEVE ALL DATA VIA AJAX JQUERY

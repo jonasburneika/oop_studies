@@ -30,11 +30,16 @@ class View
                 $this->$method($variable);
             }
         } else {
-            include $this->getContent('error');
+            $this->getContent('error');
         }
         $this->getFooter();
     }
     
+    public function getBlock($url)
+    {
+        $content = $this->viewCatalogPath . $url . '.php';
+        return $content;
+    }
 
     public function getHeader()
     {
