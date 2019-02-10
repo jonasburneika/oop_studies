@@ -51,8 +51,9 @@ class Posts
 
     public function updatePost($id, $title, $content, $slug, $status){
         $db = new Database();
-        $content = $db->escape($content);
         $title = $db->escape($title);
+        $content = $db->escape($content);
+        
         $slug = $db->escape($slug);
         $db->update('posts')->set(['title'=>$title,'content'=>$content,'status'=>$status, 'post_slug'=>$slug])->where('id',$id);
         return $db->execute();

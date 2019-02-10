@@ -10,3 +10,12 @@ function myFunction() {
     header.classList.remove("sticky");
   }
 }
+
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideDown("slow");
+  });
+});
+
+
+

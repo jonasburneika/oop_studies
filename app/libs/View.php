@@ -12,7 +12,7 @@ class View
         header('Location: ' . indexURL . $url, true, $statusCode);
         die();
     }
-    public function render($arParameters) 
+    public function render($arParameters = null) 
     {         
         $this->getHeader();
         if (empty($arParameters)) $arParameters = ['getContent' => 'content'];

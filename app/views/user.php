@@ -57,11 +57,13 @@ $socialData = $this->user['social'];
                 <!-- END SIDEBAR BUTTONS -->
                 
                 <!-- SIDEBAR MENU -->
-                <?php 
-                    echo '<div class="profile-usermenu">';
+                
+                    <div class="profile-usermenu">
+                    <?php 
                         include $this->profileNavigation;
-                    echo '</div>';
-                ?>
+                    ?>
+                    </div>
+               
                 <!-- END MENU -->
 			</div>
 		</div>

@@ -389,3 +389,14 @@ a:hover{
       margin-bottom: 10px !important;
   }
 }
+
+.autocomplete-items{
+  border-left: 1px solid #dee2e6 !important;
+  border-right: 1px solid #dee2e6 !important;
+  border-bottom:1px solid #dee2e6 !important;
+  display: block;
+  position: absolute;
+  z-index: 5;
+  background: white;
+  width: 100%;
+}

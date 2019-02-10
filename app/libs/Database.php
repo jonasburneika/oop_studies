@@ -260,7 +260,19 @@ class Database
     {
         return $this->sqlQuery;
     }
+    
+    public function whereLike($variable,$patern)
+    {   
+        $this->sqlQuery .= 'WHERE ' .$variable. ' LIKE '. $patern;
+        return $this;
+    }
 
+    public function whereBlobLike($column,$patern)
+    {   
+        $this->sqlQuery .= 'WHERE ' .$column. ' LIKE BINARY '. $patern;
+        return $this;
+    }
+    
     public function escape($string){
         $this->connect();
         $saveString = mysqli_real_escape_string($this->conn,$string);
